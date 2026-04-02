@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão Celulares — Referência em celulares em Brasília</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Sua loja de celulares em Brasília. iPhones, Samsung, Xiaomi — novos e seminovos verificados. Parcelamos em até 18x no cartão. SAUS, Ed. Victória Office Tower.">
+    <meta property="og:title" content="Conexão Celulares — Referência em celulares em Brasília">
+    <meta property="og:description" content="iPhones, Samsung, Xiaomi novos e seminovos. Venha até a gente no SAUS ou receba em casa!">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {{
+          darkMode: 'class',
+          theme: {{
+            extend: {{
+              colors: {{
+                primary: 'hsl(0, 80%, 50%)',
+                secondary: 'hsl(0, 10%, 96%)',
+                accent: 'hsl(0, 30%, 96%)',
+                background: 'hsl(0, 0%, 100%)',
+                foreground: 'hsl(215, 28%, 17%)',
+                muted: 'hsl(0, 10%, 96%)',
+                'muted-foreground': 'hsl(215, 16%, 47%)',
+                dark: 'hsl(0, 0%, 8%)',
+                border: 'hsl(0, 10%, 90%)'
+              }},
+              animation: {{
+                'orb-pulse': 'orb-pulse 4s ease-in-out infinite',
+                'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
+                'float': 'float 6s ease-in-out infinite',
+                'float-slow': 'float 8s ease-in-out infinite',
+                'float-reverse': 'float-reverse 7s ease-in-out infinite',
+                'glow': 'glow 3s infinite',
+                'pulse-ring': 'pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+              }},
+              keyframes: {{
+                'orb-pulse': {{
+                  '0%, 100%': {{ transform: 'scale(1)', opacity: '0.1' }},
+                  '50%': {{ transform: 'scale(1.15)', opacity: '0.2' }},
+                }},
+                'fade-in-up': {{
+                  '0%': {{ transform: 'translateY(20px)', opacity: '0' }},
+                  '100%': {{ transform: 'translateY(0)', opacity: '1' }},
+                }},
+                'float': {{
+                  '0%, 100%': {{ transform: 'translateY(0)' }},
+                  '50%': {{ transform: 'translateY(-20px)' }},
+                }},
+                'float-reverse': {{
+                  '0%, 100%': {{ transform: 'translateY(0)' }},
+                  '50%': {{ transform: 'translateY(20px)' }},
+                }},
+                'glow': {{
+                  '0%, 100%': {{ boxShadow: '0 0 5px hsla(0, 80%, 50%, 0.2)' }},
+                  '50%': {{ boxShadow: '0 0 20px hsla(0, 80%, 50%, 0.5)' }},
+                }},
+                'shimmer': {{
+                    '0%': {{ backgroundPosition: '200% 0' }},
+                    '100%': {{ backgroundPosition: '-200% 0' }}
+                }},
+                'pulse-ring': {{
+                  '0%': {{ transform: 'scale(0.8)', opacity: '0.5' }},
+                  '100%': {{ transform: 'scale(1.5)', opacity: '0' }},
+                }}
+              }}
+            }}
+          }}
+        }}
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer base {{
+          html {{ scroll-behavior: smooth; }}
+          body {{ @apply bg-background text-foreground; font-family: 'Inter', sans-serif; }}
+        }}
+
+        @layer components {{
+          .shimmer-btn {{
+            background: linear-gradient(110deg, #e60000 0%, #e60000 40%, #ff3333 50%, #e60000 60%, #e60000 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2.5s linear infinite;
+          }}
+          
+          @keyframes shimmer {{
+            from {{ background-position: 200% 0; }}
+            to {{ background-position: -200% 0; }}
+          }}
+
+          .card-3d {{
+            perspective: 1000px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+          }}
+          .card-3d:hover {{
+            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(230, 0, 0, 0.15);
+          }}
+
+          .glass {{
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+          }}
+          .glass-dark {{
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+          }}
+
+          .text-gradient {{
+            background: linear-gradient(135deg, #e60000, #ff6666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }}
+
+          .ribbon {{
+            position: absolute;
+            top: 16px;
+            right: -8px;
+            background: #e60000;
+            color: white;
+            padding: 4px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px 0 0 4px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(230, 0, 0, 0.4);
+          }}
+          .ribbon::after {{
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 0;
+            border-width: 4px;
+            border-style: solid;
+            border-color: #8a0000 transparent transparent #8a0000;
+          }}
+          
+          .animate-reveal {{
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s ease-out;
+          }}
+          .reveal-active {{
+            opacity: 1;
+            transform: translateY(0);
+          }}
+        }}
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
+            <a href="#inicio" class="flex items-center gap-2 group">
+                <img src="{logo_src}" alt="Conexão Celulares" class="h-10 w-10 rounded-xl object-cover transition-transform duration-300 group-hover:scale-110">
+                <span id="nav-brand-text" class="text-lg font-extrabold tracking-tight hidden sm:inline transition-colors duration-300 text-white">
+                    Conexão <span class="text-gradient">Celulares</span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1">
+                <a href="#inicio" class="nav-link px-4 py-2 text-sm font-medium transition-colors text-white/80 hover:text-white relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all hover:after:w-6">Início</a>
+                <a href="#produtos" class="nav-link px-4 py-2 text-sm font-medium transition-colors text-white/80 hover:text-white relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all hover:after:w-6">Produtos</a>
+                <a href="#sobre" class="nav-link px-4 py-2 text-sm font-medium transition-colors text-white/80 hover:text-white relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all hover:after:w-6">Sobre</a>
+                <a href="#avaliacoes" class="nav-link px-4 py-2 text-sm font-medium transition-colors text-white/80 hover:text-white relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all hover:after:w-6">Avaliações</a>
+                <a href="#contato" class="nav-link px-4 py-2 text-sm font-medium transition-colors text-white/80 hover:text-white relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:rounded-full after:transition-all hover:after:w-6">Contato</a>
+                
+                <a href="https://wa.me/5561992778924" target="_blank" class="ml-3 px-6 py-2 rounded-full text-white text-sm font-bold shimmer-btn animate-glow flex items-center gap-1.5">
+                    <i data-lucide="message-circle" class="h-4 w-4"></i> WhatsApp
+                </a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden p-2 text-white">
+                <i data-lucide="menu" class="h-6 w-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden absolute top-16 left-0 right-0 glass border-t border-border/50 px-4 pb-4 space-y-1 animate-fade-in-up md:hidden">
+            <a href="#inicio" class="block py-3 px-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl">Início</a>
+            <a href="#produtos" class="block py-3 px-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl">Produtos</a>
+            <a href="#sobre" class="block py-3 px-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl">Sobre</a>
+            <a href="#avaliacoes" class="block py-3 px-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl">Avaliações</a>
+            <a href="#contato" class="block py-3 px-3 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-xl">Contato</a>
+            <a href="https://wa.me/5561992778924" target="_blank" class="block w-full text-center py-3 rounded-full text-white text-sm font-bold shimmer-btn mt-2">
+                WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden bg-dark">
+        <div class="absolute top-20 right-[10%] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-primary/20 blur-[100px] animate-orb-pulse pointer-events-none"></div>
+        <div class="absolute bottom-20 left-[-5%] w-[200px] sm:w-[350px] h-[200px] sm:h-[350px] rounded-full bg-primary/10 blur-[80px] animate-orb-pulse pointer-events-none" style="animation-delay: 2s"></div>
+        <div class="absolute top-1/2 left-1/2 w-[150px] sm:w-[200px] h-[150px] sm:h-[200px] rounded-full bg-primary/5 blur-[60px] animate-orb-pulse pointer-events-none" style="animation-delay: 1s"></div>
+
+        <!-- Floating Icons -->
+        <div class="absolute right-[5%] top-[12%] animate-float"><i data-lucide="smartphone" class="h-16 w-16 sm:h-24 md:h-32 sm:w-24 md:w-32 text-primary/20" stroke-width="0.8"></i></div>
+        <div class="absolute right-[20%] bottom-[12%] animate-float-reverse"><i data-lucide="laptop" class="h-12 w-12 sm:h-28 md:h-40 sm:w-28 md:w-40 text-primary/15" stroke-width="0.6"></i></div>
+        <div class="absolute right-[8%] bottom-[28%] animate-float-slow"><i data-lucide="watch" class="h-10 w-10 sm:h-16 md:h-20 sm:w-16 md:w-20 text-primary/15" stroke-width="0.8"></i></div>
+        <div class="absolute left-[3%] top-[25%] animate-float" style="animation-delay: 1.5s"><i data-lucide="headphones" class="h-10 w-10 sm:h-16 md:h-24 sm:w-16 md:w-24 text-primary/10" stroke-width="0.7"></i></div>
+        <div class="absolute right-[35%] top-[8%] animate-float-reverse" style="animation-delay: 0.8s"><i data-lucide="tablet" class="h-10 w-10 sm:h-14 md:h-20 sm:w-14 md:w-20 text-primary/10" stroke-width="0.7"></i></div>
+        <div class="absolute left-[12%] bottom-[18%] animate-float-slow" style="animation-delay: 2.5s"><i data-lucide="camera" class="h-8 w-8 sm:h-12 md:h-16 sm:w-12 md:w-16 text-primary/10" stroke-width="0.7"></i></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                <!-- Content -->
+                <div class="max-w-3xl flex-1">
+                    <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8 animate-fade-in-up">
+                        <i data-lucide="star" class="h-4 w-4 text-primary fill-primary"></i>
+                        <span class="text-sm font-medium text-primary">Referência em celulares em Brasília</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight text-white animate-fade-in-up" style="animation-delay: 0.1s">
+                        Seu próximo celular está na <span class="text-gradient">Conexão Celulares</span>
+                    </h1>
+
+                    <p class="mt-6 text-lg sm:text-xl text-white/60 max-w-xl animate-fade-in-up" style="animation-delay: 0.2s">
+                        iPhones, Samsung, Xiaomi — novos e seminovos verificados. Parcelamos em até 18x no cartão. SAUS, Ed. Victória Office Tower.
+                    </p>
+
+                    <div class="mt-10 flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.3s">
+                        <a href="#produtos" class="px-8 h-14 flex items-center justify-center rounded-full text-white text-lg font-bold shimmer-btn animate-glow gap-2">
+                            Ver Produtos <i data-lucide="arrow-right" class="h-5 w-5"></i>
+                        </a>
+                        <a href="https://wa.me/5561992778924" target="_blank" class="px-8 h-14 flex items-center justify-center rounded-full text-white text-lg font-bold bg-transparent border-2 border-white/20 hover:bg-white/10 hover:border-white/40 gap-2">
+                            <i data-lucide="message-circle" class="h-5 w-5"></i> Falar no WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Counter Statistics -->
+                    <div class="mt-14 flex flex-wrap gap-8 sm:gap-12 animate-fade-in-up" style="animation-delay: 0.4s">
+                        <div class="counter-box" data-target="3">
+                            <span class="text-3xl sm:text-4xl font-black text-white"><span class="counter">0</span>+</span>
+                            <p class="text-sm text-white/40 mt-1">Anos no mercado</p>
+                        </div>
+                        <div class="counter-box" data-target="200">
+                            <span class="text-3xl sm:text-4xl font-black text-white"><span class="counter">0</span>+</span>
+                            <p class="text-sm text-white/40 mt-1">Clientes satisfeitos</p>
+                        </div>
+                        <div class="counter-box" data-target="500">
+                            <span class="text-3xl sm:text-4xl font-black text-white"><span class="counter">0</span>+</span>
+                            <p class="text-sm text-white/40 mt-1">Produtos vendidos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo Mobile/Desktop -->
+                <div class="flex order-first md:order-last items-center justify-center flex-shrink-0 animate-fade-in-up mb-6 md:mb-0" style="animation-delay: 0.3s">
+                    <img src="{logo_src}" alt="Conexão Celulares" class="w-32 sm:w-48 md:w-56 lg:w-72 h-32 sm:h-48 md:h-56 lg:h-72 rounded-3xl object-cover shadow-2xl shadow-primary/20 border-2 border-white/10">
+                </div>
+            </div>
+            
+            <!-- Trust Badges -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 animate-fade-in-up" style="animation-delay: 0.5s">
+                <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-4 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 group">
+                    <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <i data-lucide="shield-check" class="h-5 w-5 text-primary"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-white/80 group-hover:text-white">Garantia Total</span>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-4 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 group">
+                    <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <i data-lucide="package" class="h-5 w-5 text-primary"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-white/80 group-hover:text-white">Entrega em BSB</span>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-4 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 group">
+                    <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <i data-lucide="credit-card" class="h-5 w-5 text-primary"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-white/80 group-hover:text-white">Até 18x no Cartão</span>
+                </div>
+                <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-4 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 group">
+                    <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <i data-lucide="star" class="h-5 w-5 text-primary"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-white/80 group-hover:text-white">5★ no Google</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] md:h-[120px]">
+                <path d="M0,40 C360,120 1080,0 1440,80 L1440,120 L0,120 Z" fill="white"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="produtos" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.02]" style="background-image: radial-gradient(circle at 1px 1px, black 1px, transparent 0); background-size: 40px 40px;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-14 animate-reveal">
+                <h2 class="text-3xl sm:text-5xl font-black text-dark">Nosso <span class="text-gradient">Catálogo</span></h2>
+                <p class="mt-4 text-muted-foreground max-w-lg mx-auto text-lg">Encontre o produto ideal — novos ou seminovos, sempre com procedência.</p>
+            </div>
+
+            <!-- Filter tabs -->
+            <div id="filter-tabs" class="flex flex-wrap justify-center gap-2 mb-12 animate-reveal">
+                <button data-filter="all" class="filter-btn active px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-primary text-white shadow-lg scale-105">Todos</button>
+                <button data-filter="iphone" class="filter-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-secondary text-foreground hover:bg-secondary/70">iPhone</button>
+                <button data-filter="samsung" class="filter-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-secondary text-foreground hover:bg-secondary/70">Samsung</button>
+                <button data-filter="macbook" class="filter-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-secondary text-foreground hover:bg-secondary/70">MacBook</button>
+                <button data-filter="ipad" class="filter-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-secondary text-foreground hover:bg-secondary/70">iPad</button>
+                <button data-filter="watch" class="filter-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-secondary text-foreground hover:bg-secondary/70">Watch</button>
+                <button data-filter="acessorios" class="filter-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-secondary text-foreground hover:bg-secondary/70">Acessórios</button>
+            </div>
+
+            <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Products will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24 bg-accent relative overflow-hidden">
+        <div class="absolute -right-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[80px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-reveal">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl sm:text-5xl font-black text-dark mb-6 leading-tight">
+                        Por que escolher a <span class="text-gradient">Conexão Celulares</span>?
+                    </h2>
+                    <p class="text-muted-foreground leading-relaxed text-lg mb-10">
+                        Somos especialistas em celulares e eletrônicos em Brasília, com produtos novos e seminovos das melhores marcas, procedência garantida e parcelamento em até 18x.
+                    </p>
+
+                    <div class="flex gap-8 mb-10">
+                        <div class="text-center">
+                            <span class="text-3xl font-black text-dark">3+</span>
+                            <p class="text-xs text-muted-foreground font-medium mt-1">Anos</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-3xl font-black text-dark">200+</span>
+                            <p class="text-xs text-muted-foreground font-medium mt-1">Clientes</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-3xl font-black text-dark">500+</span>
+                            <p class="text-xs text-muted-foreground font-medium mt-1">Vendas</p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="group bg-white rounded-2xl p-5 shadow-sm border border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all">
+                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary transition-all">
+                                <i data-lucide="shield-check" class="h-5 w-5 text-primary group-hover:text-white"></i>
+                            </div>
+                            <h3 class="font-bold mb-1 text-sm">Garantia em todos os produtos</h3>
+                            <p class="text-xs text-muted-foreground">Novos e seminovos verificados com total segurança.</p>
+                        </div>
+                        <div class="group bg-white rounded-2xl p-5 shadow-sm border border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all">
+                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary transition-all">
+                                <i data-lucide="map-pin" class="h-5 w-5 text-primary group-hover:text-white"></i>
+                            </div>
+                            <h3 class="font-bold mb-1 text-sm">Atendimento local em Brasília</h3>
+                            <p class="text-xs text-muted-foreground">SAUS, Ed. Victória Office Tower. Venha nos visitar!</p>
+                        </div>
+                        <div class="group bg-white rounded-2xl p-5 shadow-sm border border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all">
+                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary transition-all">
+                                <i data-lucide="credit-card" class="h-5 w-5 text-primary group-hover:text-white"></i>
+                            </div>
+                            <h3 class="font-bold mb-1 text-sm">Parcelamos em até 18x</h3>
+                            <p class="text-xs text-muted-foreground">Pagamento facilitado no cartão, PIX ou débito.</p>
+                        </div>
+                        <div class="group bg-white rounded-2xl p-5 shadow-sm border border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all">
+                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary transition-all">
+                                <i data-lucide="refresh-cw" class="h-5 w-5 text-primary group-hover:text-white"></i>
+                            </div>
+                            <h3 class="font-bold mb-1 text-sm">Trocas e devoluções</h3>
+                            <p class="text-xs text-muted-foreground">Transparência e segurança garantidas em cada compra.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center justify-center">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-primary/20 rounded-[2rem] blur-[60px] animate-orb-pulse"></div>
+                        <div class="relative bg-gradient-to-br from-dark to-[#222] rounded-[2rem] p-16 shadow-2xl border border-white/5">
+                            <img src="{logo_src}" alt="Conexão Celulares" class="w-48 h-48 object-contain animate-float-slow drop-shadow-2xl">
+                            <p class="text-center text-white/60 mt-6 font-medium text-sm tracking-wide">Sua loja de celulares em Brasília</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="avaliacoes" class="py-24 bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-reveal">
+            <h2 class="text-3xl sm:text-5xl font-black text-center text-white mb-16">O que nossos clientes <span class="text-gradient">dizem</span></h2>
+
+            <div class="relative">
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-12 text-center relative">
+                    <i data-lucide="quote" class="h-12 w-12 text-primary/30 mx-auto mb-6"></i>
+                    <p id="testimonial-text" class="text-xl sm:text-2xl text-white/90 leading-relaxed font-medium mb-8 min-h-[80px]">"Carregando depoimentos..."</p>
+                    <div class="flex gap-1 justify-center mb-4">
+                        <i data-lucide="star" class="h-5 w-5 fill-primary text-primary"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-primary text-primary"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-primary text-primary"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-primary text-primary"></i>
+                        <i data-lucide="star" class="h-5 w-5 fill-primary text-primary"></i>
+                    </div>
+                    <p id="testimonial-name" class="text-sm font-semibold text-white"></p>
+                    <p class="text-xs text-white/40">Cliente verificado — Google</p>
+                </div>
+
+                <div class="flex justify-center gap-4 mt-8">
+                    <button id="prev-testimonial" class="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 text-white/60 hover:text-white transition-all">
+                        <i data-lucide="chevron-left" class="h-5 w-5"></i>
+                    </button>
+                    <div id="testimonial-dots" class="flex items-center gap-2"></div>
+                    <button id="next-testimonial" class="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 text-white/60 hover:text-white transition-all">
+                        <i data-lucide="chevron-right" class="h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://www.google.com/maps/search/Conex%C3%A3o+Celulares+SAUS+Bras%C3%ADlia" target="_blank" class="px-8 py-3 rounded-full text-white font-bold shimmer-btn inline-block">
+                    Ver todas as avaliações no Google
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-reveal">
+            <h2 class="text-3xl sm:text-5xl font-black text-center text-dark mb-14">Fale <span class="text-gradient">Conosco</span></h2>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="h-5 w-5 text-primary"></i>
+                            </div>
+                            <span class="font-medium">SAUS, Ed. Victória Office Tower — Brasília/DF</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="h-5 w-5 text-primary"></i>
+                            </div>
+                            <span class="font-medium">(61) 99277-8924</span>
+                        </div>
+                        <a href="https://www.instagram.com/conexaocelularesbsb" target="_blank" class="flex items-center gap-3 group">
+                            <div class="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-all">
+                                <i data-lucide="instagram" class="h-5 w-5 text-primary group-hover:text-white"></i>
+                            </div>
+                            <span class="font-medium group-hover:text-primary transition-colors">@conexaocelularesbsb</span>
+                        </a>
+                    </div>
+
+                    <div class="bg-accent rounded-2xl p-5 border border-border/50">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i data-lucide="clock" class="h-5 w-5 text-primary"></i>
+                            <h3 class="font-bold">Horário de Funcionamento</h3>
+                        </div>
+                        <div class="space-y-1 text-sm text-muted-foreground">
+                            <p>Seg — Sex: 9h às 18h</p>
+                            <p>Sábado: 9h às 14h</p>
+                            <p>Domingo: Fechado</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden border shadow-sm h-[220px]">
+                        <iframe title="Localização" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.747976936353!2d-47.8860472239634!3d-15.80389368482434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b22f7ccfe79%3A0x6336a5ac3b68078c!2zVmljdMOzcmlhIE9mZmljZSBUb3dlcg!5e0!3m2!1spt-BR!2sbr!4v1743598765432!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="space-y-4 bg-dark rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/5">
+                    <h3 class="font-bold text-xl text-white mb-4">Envie sua mensagem pelo WhatsApp</h3>
+                    <input type="text" id="form-nome" placeholder="Seu nome" required class="w-full px-4 h-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-primary">
+                    <input type="text" id="form-telefone" placeholder="Telefone" class="w-full px-4 h-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-primary">
+                    <input type="text" id="form-produto" placeholder="Produto de interesse" class="w-full px-4 h-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-primary">
+                    <textarea id="form-mensagem" placeholder="Mensagem (opcional)" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-primary min-h-[100px]"></textarea>
+                    <button type="submit" class="w-full h-12 rounded-full shimmer-btn text-white font-bold flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="h-5 w-5"></i> Enviar pelo WhatsApp
+                    </button>
+                    <p class="text-xs text-white/40 text-center">⚡ Respondemos em até 1 hora no horário comercial</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0f0f0f] text-white/60 py-14 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+                <div class="flex items-center gap-3">
+                    <img src="{logo_src}" alt="Conexão Celulares" class="h-12 w-12 rounded-xl object-cover">
+                    <div>
+                        <p class="text-lg font-extrabold text-white">Conexão <span class="text-gradient">Celulares</span></p>
+                        <p class="text-xs mt-0.5">Celulares e eletrônicos em Brasília</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-6 justify-center">
+                    <a href="https://www.instagram.com/conexaocelularesbsb" target="_blank" class="flex items-center gap-1.5 text-sm transition-all hover:scale-110 hover:text-pink-400">
+                        <i data-lucide="instagram" class="h-4 w-4"></i> Instagram
+                    </a>
+                    <a href="https://wa.me/5561992778924" target="_blank" class="flex items-center gap-1.5 text-sm transition-all hover:scale-110 hover:text-green-400">
+                        <i data-lucide="message-circle" class="h-4 w-4"></i> WhatsApp
+                    </a>
+                    <a href="https://www.google.com/maps/search/Vict%C3%B3ria+Office+Tower+SAUS+Bras%C3%ADlia" target="_blank" class="flex items-center gap-1.5 text-sm transition-all hover:scale-110 hover:text-red-400">
+                        <i data-lucide="map-pin" class="h-4 w-4"></i> Google Maps
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/5 mt-10 pt-6 text-center text-xs text-white/30">
+                © 2025 Conexão Celulares. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5561992778924" target="_blank" class="fixed bottom-6 right-6 z-50 group">
+        <span class="absolute inset-0 h-14 w-14 rounded-full bg-[#25d366] animate-pulse-ring"></span>
+        <span class="absolute inset-0 h-14 w-14 rounded-full bg-[#25d366] animate-pulse-ring" style="animation-delay: 0.5s"></span>
+        <div id="wa-tooltip" class="hidden absolute bottom-full right-0 mb-3 bg-dark text-white text-sm font-medium px-4 py-2 rounded-xl shadow-lg whitespace-nowrap animate-fade-in-up">
+            💬 Fale conosco!
+            <span class="absolute top-full right-6 border-8 border-transparent border-t-dark"></span>
+        </div>
+        <span class="relative h-14 w-14 rounded-full flex items-center justify-center shadow-lg bg-[#25d366] hover:scale-110 transition-transform duration-300">
+            <i data-lucide="message-circle" class="h-7 w-7 text-white"></i>
+        </span>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        const navBrandText = document.getElementById('nav-brand-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggleIcon = document.querySelector('#menu-toggle i');
+
+        window.addEventListener('scroll', () => {{
+            if (window.scrollY > 20) {{
+                navbar.classList.add('glass', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+                navBrandText.classList.remove('text-white');
+                navLinks.forEach(l => l.classList.replace('text-white/80', 'text-foreground/70'));
+                navLinks.forEach(l => l.classList.add('hover:text-primary'));
+                document.getElementById('menu-toggle').classList.replace('text-white', 'text-foreground');
+            }} else {{
+                navbar.classList.remove('glass', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+                navBrandText.classList.add('text-white');
+                navLinks.forEach(l => l.classList.replace('text-foreground/70', 'text-white/80'));
+                navLinks.forEach(l => l.classList.remove('hover:text-primary'));
+                document.getElementById('menu-toggle').classList.replace('text-foreground', 'text-white');
+            }}
+        }});
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {{
+            mobileMenu.classList.toggle('hidden');
+        }});
+
+        // Stats Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const animateCounters = () => {{
+            counters.forEach(counter => {{
+                const target = +counter.parentElement.parentElement.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / 100;
+                if (count < target) {{
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 20);
+                }} else {{
+                    counter.innerText = target;
+                }}
+            }});
+        }};
+
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll('.animate-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {{
+            entries.forEach(entry => {{
+                if (entry.isIntersecting) {{
+                    entry.target.classList.add('reveal-active');
+                    if (entry.target.querySelector('.counter')) animateCounters();
+                }}
+            }});
+        }}, {{ threshold: 0.1 }});
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Products Data
+        const products = [
+            {{ id: 1, name: "iPhone 16 Pro Max", brand: "Apple", category: "iphone", status: "hot", price: 8790, oldPrice: 9990, spec: "Desert Titanium · 256GB", image: "https://i.pinimg.com/736x/1f/e1/15/1fe11571d7b862c0eb71b2de0c396788.jpg" }},
+            {{ id: 2, name: "iPhone 15 Pro Max", brand: "Apple", category: "iphone", status: "stock", price: 7990, oldPrice: 8990, spec: "Natural Titanium · 256GB", image: "https://i.pinimg.com/736x/52/fc/c2/52fcc2e982b0606877aed66fefb84d79.jpg" }},
+            {{ id: 3, name: "iPhone 15", brand: "Apple", category: "iphone", status: "stock", price: 6490, oldPrice: 7290, spec: "Black · 128GB", image: "https://i.pinimg.com/736x/19/2e/ee/192eeeb10984bb2ae433b2b253ff8bcb.jpg" }},
+            {{ id: 4, name: "Samsung Galaxy S24 Ultra", brand: "Samsung", category: "samsung", status: "new", price: 6390, oldPrice: 7200, spec: "Titanium Black · 512GB", image: "https://i.pinimg.com/736x/83/e7/48/83e748a2d76c0febc7dfe3db397dd6c8.jpg" }},
+            {{ id: 5, name: "Samsung Galaxy S24", brand: "Samsung", category: "samsung", status: "stock", price: 4890, oldPrice: 5490, spec: "Phantom Black · 256GB", image: "https://i.pinimg.com/736x/d8/eb/1e/d8eb1e675cc3685d524c1bc577741f5e.jpg" }},
+            {{ id: 6, name: "MacBook Air M3", brand: "Apple", category: "macbook", status: "stock", price: 8490, oldPrice: 9500, spec: "Space Gray · 256GB · 15\\\"", image: "https://i.pinimg.com/736x/8b/02/66/8b0266a8b7a0deaa2ebbfcf1f3f31192.jpg" }},
+            {{ id: 7, name: "MacBook Pro M3", brand: "Apple", category: "macbook", status: "hot", price: 13490, oldPrice: 14900, spec: "Space Black · 512GB · 14\\\"", image: "https://i.pinimg.com/736x/42/5b/c4/425bc4776d199e8a3c87bb1d86140b6e.jpg" }},
+            {{ id: 8, name: "iPad Air M2", brand: "Apple", category: "ipad", status: "hot", price: 5190, oldPrice: 5800, spec: "Starlight · 11\\\" · 256GB", image: "https://i.pinimg.com/736x/f3/08/d5/f308d50e486861eee452e9321de1f5fd.jpg" }},
+            {{ id: 9, name: "iPad Pro 12.9\\\"", brand: "Apple", category: "ipad", status: "stock", price: 8990, oldPrice: 9990, spec: "Space Black · 512GB", image: "https://i.pinimg.com/736x/17/e8/d8/17e8d87ef57f9dd0cd9189321412db7a.jpg" }},
+            {{ id: 10, name: "Apple Watch Ultra 2", brand: "Apple", category: "watch", status: "new", price: 6990, oldPrice: 7900, spec: "Titanium · Ocean Band · GPS+Cell", image: "https://i.pinimg.com/1200x/64/f6/d7/64f6d73f4630a4aa5df64bcd48001379.jpg" }},
+            {{ id: 11, name: "Apple Watch Series 9", brand: "Apple", category: "watch", status: "stock", price: 3490, oldPrice: 3990, spec: "Midnight · 41mm", image: "https://i.pinimg.com/1200x/23/aa/02/23aa0275ccd57d2db562a0db72a686a4.jpg" }},
+            {{ id: 12, name: "Samsung Galaxy Z Fold 6", brand: "Samsung", category: "samsung", status: "new", price: 9290, oldPrice: 10500, spec: "Crafted Black · 256GB", image: "https://i.pinimg.com/736x/a1/d4/0e/a1d40eab1a3a4757b0d9154e2b5e57b4.jpg" }},
+            {{ id: 13, name: "AirPods Pro", brand: "Apple", category: "acessorios", status: "stock", price: 1890, oldPrice: 2199, spec: "2ª Geração · Com Case MagSafe", image: "https://i.pinimg.com/1200x/d3/a9/1d/d3a91d58e6670c09e9e522019a2deda0.jpg" }},
+            {{ id: 14, name: "Samsung Galaxy Buds2 Pro", brand: "Samsung", category: "acessorios", status: "stock", price: 1290, oldPrice: 1590, spec: "Graphite · ANC Ativo", image: "https://i.pinimg.com/1200x/cf/78/7a/cf787aa4b86cc389d790737446e27f46.jpg" }}
+        ];
+
+        const productGrid = document.getElementById('product-grid');
+        const renderProducts = (category = 'all') => {{
+            productGrid.innerHTML = '';
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+            
+            filtered.forEach((p, i) => {{
+                const card = document.createElement('div');
+                card.className = 'card-3d group relative rounded-2xl border bg-white overflow-hidden shadow-sm flex flex-col animate-fade-in-up';
+                card.style.animationDelay = `${{i * 0.07}}s`;
+                
+                const ribbon = p.status === 'hot' ? '<div class="ribbon">🔥 Mais Vendido</div>' : '';
+                const brandColors = p.brand === 'Apple' ? 'from-slate-800 to-slate-900' : 'from-blue-900 to-indigo-950';
+                
+                const badgeClass = p.status === 'new' ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' : 
+                                   p.status === 'hot' ? 'bg-rose-500/10 text-rose-600 border-rose-500/20' : 
+                                   'bg-sky-500/10 text-sky-600 border-sky-500/20';
+                const badgeText = p.status === 'new' ? 'Lançamento' : p.status === 'hot' ? 'Em Alta' : 'Em Estoque';
+
+                card.innerHTML = `
+                    ${{ribbon}}
+                    <div class="h-44 bg-gradient-to-br ${{brandColors}} flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
+                        <img src="${{p.image}}" alt="${{p.name}}" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                        <span class="absolute bottom-3 left-4 text-white/60 text-xs font-bold tracking-widest uppercase z-20">${{p.brand}}</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <h3 class="font-bold text-lg leading-tight flex-1">${{p.name}}</h3>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${{badgeClass}}">${{badgeText}}</span>
+                        </div>
+                        <p class="text-sm text-muted-foreground mb-4">${{p.spec}}</p>
+                        <div class="flex items-end gap-2 mb-5">
+                            <span class="text-2xl font-black text-primary">R$ ${{p.price.toLocaleString('pt-BR')}}</span>
+                            <span class="text-sm text-muted-foreground line-through mb-1">R$ ${{p.oldPrice.toLocaleString('pt-BR')}}</span>
+                        </div>
+                        <a href="https://wa.me/5561992778924?text=${{encodeURIComponent('Olá! Tenho interesse no ' + p.name + ' por R$ ' + p.price.toLocaleString('pt-BR'))}}" target="_blank" class="mt-auto w-full h-11 rounded-full shimmer-btn text-white text-sm font-bold flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="message-circle" class="h-4 w-4"></i> Comprar via WhatsApp
+                        </a>
+                    </div>
+                `;
+                productGrid.appendChild(card);
+            }});
+            lucide.createIcons();
+        }};
+        renderProducts();
+
+        // Tabs Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {{
+            btn.addEventListener('click', () => {{
+                filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white', 'shadow-lg', 'scale-105'));
+                filterBtns.forEach(b => b.classList.add('bg-secondary', 'text-foreground'));
+                
+                btn.classList.add('active', 'bg-primary', 'text-white', 'shadow-lg', 'scale-105');
+                btn.classList.remove('bg-secondary', 'text-foreground');
+                
+                renderProducts(btn.getAttribute('data-filter'));
+            }});
+        }});
+
+        // Testimonials Slider
+        const testimonials = [
+            {{ name: "Cliente Google", quote: "Produto chegou exatamente como anunciado, rápido e com ótimo atendimento. Super recomendo a Conexão Celulares!" }},
+            {{ name: "Cliente Google", quote: "Comprei um iPhone seminovo e ficou perfeito. Transparência total do começo ao fim. Voltarei com certeza." }},
+            {{ name: "Cliente Google", quote: "Atendimento excepcional, produto de qualidade e entrega no prazo. A melhor loja de celulares de Brasília." }}
+        ];
+        let currentTestimonial = 0;
+        const tText = document.getElementById('testimonial-text');
+        const tName = document.getElementById('testimonial-name');
+        const tDots = document.getElementById('testimonial-dots');
+
+        const updateTestimonial = () => {{
+            tText.innerText = '"' + testimonials[currentTestimonial].quote + '"';
+            tName.innerText = testimonials[currentTestimonial].name;
+            updateDots();
+        }};
+
+        const updateDots = () => {{
+            tDots.innerHTML = '';
+            testimonials.forEach((_, i) => {{
+                const dot = document.createElement('button');
+                dot.className = `h-2 rounded-full transition-all duration-300 ${{i === currentTestimonial ? 'w-8 bg-primary' : 'w-2 bg-white/20'}}`;
+                dot.onclick = () => {{ currentTestimonial = i; updateTestimonial(); }};
+                tDots.appendChild(dot);
+            }});
+        }};
+
+        document.getElementById('next-testimonial').onclick = () => {{
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial();
+        }};
+        document.getElementById('prev-testimonial').onclick = () => {{
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial();
+        }};
+
+        setInterval(() => {{
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial();
+        }}, 5000);
+        updateTestimonial();
+
+        // Contact Form
+        document.getElementById('contact-form').onsubmit = (e) => {{
+            e.preventDefault();
+            const nome = document.getElementById('form-nome').value;
+            const tel = document.getElementById('form-telefone').value;
+            const prod = document.getElementById('form-produto').value;
+            const msg = document.getElementById('form-mensagem').value;
+            const text = `Olá! Meu nome é ${{nome}}.\\nTelefone: ${{tel}}\\nProduto: ${{prod}}\\nMensagem: ${{msg}}`;
+            window.open(`https://wa.me/5561992778924?text=${{encodeURIComponent(text)}}`, '_blank');
+        }};
+
+        // Tooltip Timer
+        setTimeout(() => document.getElementById('wa-tooltip').classList.remove('hidden'), 3000);
+        setTimeout(() => document.getElementById('wa-tooltip').classList.add('hidden'), 8000);
+
+    </script>
+</body>
+</html>
